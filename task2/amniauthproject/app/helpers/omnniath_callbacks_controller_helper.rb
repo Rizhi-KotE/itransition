@@ -1,0 +1,2 @@
+module OmnniathCallbacksControllerHelper
+end
