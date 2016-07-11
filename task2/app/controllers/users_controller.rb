@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  before_action :set_user_by_id, only: [  :finish_signup]
+  before_action :set_user_by_format, only: [:show,:edit, :update, :destroy,]
 
+  respond_to :html, :json
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
@@ -29,32 +31,31 @@ class UsersController < ApplicationController
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user 
-    if request.patch? && params[:user] #&& params[:user][:email]
-      if @user.update(user_params)
-        @user.skip_reconfirmation!
-        sign_in(@user, :bypass => true)
+    #if request.patch? && params[:user] #&& params[:user][:email]
+    #  if @user.update(user_params)
+       # @user.skip_reconfirmation!
+       # sign_in(@user, :bypass => true)
         redirect_to @user, notice: 'Your profile was successfully updated.'
-      else
-        @show_errors = true
-      end
-    end
+    #  else
+    #    @show_errors = true
+    #  end
+    #end
   end
 
   # DELETE /users/:id.:format
   def destroy
-    # authorize! :delete, @user
+    #authorize! :delete, @user
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_url
   end
   
   private
-    def set_user
-      if @user == nil?
-            @user = User.find(params[:id])
-      end
+    def set_user_by_id
+      @user = User.find(params[:id])
+    end
+
+    def set_user_by_format
+      @user = User.find(params[:format])
     end
 
     def user_params

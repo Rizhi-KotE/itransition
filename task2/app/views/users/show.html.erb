@@ -1,0 +1,11 @@
+<h1>Личный аккаунт</h1>
+
+<% if not @user.email == nil? %>
+	<p>
+	<strong> Email: </strong>
+	<%= @user.email %>
+	</p>
+<% end %>
+
+<%= link_to 'Destroy user', @user, {id: @user.id, method: :delete} %> |
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
