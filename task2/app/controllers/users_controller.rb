@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user_by_id, only: [  :finish_signup]
-  before_action :set_user_by_format, only: [:show,:edit, :update, :destroy,]
+  before_action :set_user_by_format, only: [:show, :edit, :update, :destroy, :block]
 
+  before_filter :authenticate_user!
   respond_to :html, :json
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
+    @users = User.all
   end
 
   # GET /users/:id/edit
@@ -48,10 +50,41 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to root_url
   end
+
+  def action_with_users
+    action = params[:action_with_users]
+
+    if(action=="block")
+      block_users(params[:user_id])
+    elsif(action=="unblock")
+      unblock_users(params[:user_id])
+    elsif(action=="delete")
+      delete_users(params[:user_id])
+    end
+    redirect_back(fallback_location: root_path)
+  end
   
   private
     def set_user_by_id
       @user = User.find(params[:id])
+    end
+
+    def block_users(user_ids)
+      user_ids.each do |id|
+        User.find(id).lock_access!
+      end
+    end
+
+    def unblock_users(user_ids)
+      user_ids.each do |id|
+        User.find(id).unlock_access!
+      end
+    end
+
+    def delete_users(user_ids)
+      user_ids.each do |id|
+        User.find(id).destroy
+      end
     end
 
     def set_user_by_format

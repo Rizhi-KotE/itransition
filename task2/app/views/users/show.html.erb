@@ -1,11 +1,29 @@
-<h1>Личный аккаунт</h1>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="row">
+  <div class="col col-md-1"></div>
+  <div class="col col-md-5">
+	  	<strong>
+	  	  <p>Личный аккаунт</p>
+	  	</strong>
+	  	<% if not @user.name.nil? %>
+	  	<%= @user.name %>
+	  	<% else %>
+	  	<strong>User id:</strong>
+	  	<%= @user.id %>
+	  	<% end %>
+  </div>
+  <div class="col col-md-3"></div>
+  <div class="col col-md-3">
+  	<%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %></div>
+  </div>
+</nav>
 
-<% if not @user.email == nil? %>
-	<p>
-	<strong> Email: </strong>
-	<%= @user.email %>
-	</p>
+<%= form_tag('users/action_with_users.'+ @user.id.to_s) do %>
+
+<%= render "users/user_table" %>
+
+<%= submit_tag("block", name: "action_with_users", value: "block") %>
+<%= submit_tag("unblock", name: "action_with_users", value: "unblock") %>
+<%= submit_tag("delete", name: "action_with_users", value: "delete") %>
+
 <% end %>
-
-<%= link_to 'Destroy user', @user, {id: @user.id, method: :delete} %> |
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
