@@ -1,19 +1,24 @@
 package photoapplication.web.tests;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
 import photoapplication.web.controller.UploadController;
 
+
 public class UploadControllerTest {
+	private MockMvc initMockWithController() {
+		UploadController controller = new UploadController();
+		return standaloneSetup(controller).build();
+	}
+
 	@Test
 	public void testHomePage() throws Exception {
-		UploadController controller = new UploadController();
-		MockMvc mockMvc = standaloneSetup(controller).build();
+		MockMvc mockMvc = initMockWithController();
 		mockMvc.perform(get("/")).andExpect(view().name("home"));
-
 	}
 }
