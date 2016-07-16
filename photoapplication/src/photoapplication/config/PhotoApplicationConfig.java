@@ -1,13 +1,12 @@
-package com.webapplication.photoapplication.config;
+package photoapplication.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class PhotoapplicationWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
