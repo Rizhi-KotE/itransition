@@ -1,4 +1,4 @@
-package com.webapplication.photoaplication.config;
+package com.webapplication.photoapplication.config;
 
 import javax.servlet.MultipartConfigElement;
 

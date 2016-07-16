@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequestMapping(value="/")
 public class UploadFileController {
 
-    @RequestMapping(value="/upload", method=RequestMethod.GET)
+    @RequestMapping(value="upload", method=RequestMethod.GET)
     public @ResponseBody String provideUploadInfo() {
         return "Вы можете загружать файл с использованием того же URL.";
     }
 
-    @RequestMapping(value="/upload", method=RequestMethod.POST)
+    @RequestMapping(value="upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("name") String name,
             @RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
@@ -38,9 +39,11 @@ public class UploadFileController {
         }
     }
     
-    @RequestMapping(value="/", method = RequestMethod.GET)
-	public String start() {
-		return "index";
+    @RequestMapping(method = RequestMethod.GET)
+	public String home() {
+		return "home";
 	}
+    
+    
 
 }
