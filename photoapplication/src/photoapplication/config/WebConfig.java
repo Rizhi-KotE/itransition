@@ -13,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.sqlite.JDBC;
 
+import photoapplication.dao.interfaces.ImageResource;
+import photoapplication.dao.objects.CloudinaryImageLoader;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("photoapplication")
@@ -36,6 +39,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return dataSource;
 	}
 
+	@Bean
+	public ImageResource imageResource(){
+		CloudinaryImageLoader imageLoader = new CloudinaryImageLoader();
+		imageLoader.setCloudName("dso6nx90r");
+		imageLoader.setApiKey("dso6nx90r");
+		imageLoader.setApiSecret("hcLNKXaiJKwmkG1LG8Deh2admws");
+		return imageLoader;
+	}
+	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();

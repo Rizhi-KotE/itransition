@@ -16,6 +16,6 @@
 <link rel="stylesheet"
 	href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
-<form id="dropZone" action="../upload" class="dropzone">
+<form id="dropZone" action="../photo/upload" class="dropzone">
 	<input type="text" class="hidden" name="fileName" />
 </form>
