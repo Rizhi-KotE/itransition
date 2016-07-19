@@ -5,11 +5,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static photoapplication.config.Constants.FILE;
 import static photoapplication.config.Constants.FILENAME;
 import static photoapplication.config.Constants.UPLOAD;
-import static photoapplication.web.utils.WebControllerUtils.byteToStringBase64;
 
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import photoapplication.dao.interfaces.ImageDAO;
-import photoapplication.dao.objects.User;
-import photoapplication.dataexam.entity.Image;
+import photoapplication.database.entity.Image;
+import photoapplication.database.entity.ImageUser;
+import photoapplication.database.service.ImageService;
 import utils.TestUtils;
 
 @Controller
@@ -42,16 +40,13 @@ public class ImageCRUDController {
 	
 	@Autowired
 	@Qualifier("testImageDAO")
-	private ImageDAO imageDao;
+	private ImageService imageService;
 
 	@ResponseBody
 	@RequestMapping(method = GET)
-	public  String getPhotos(){
-		List<Image> images = imageDao.getByAuthor(new User());
-		byte[] image = images.get(0).getContent();
-		Base64 encoder = new Base64();
-		String imageBase64 =  encoder.encodeAsString(image);
-		return imageBase64;
+	public  List<Image> getPhotos(){
+		List<Image> images = imageService.getByUser(new ImageUser());
+		return images;
 	}
 	
 	@ResponseBody
@@ -71,10 +66,7 @@ public class ImageCRUDController {
 	}
 
 	private void saveImage(String name, MultipartFile file) {
-		Image image = new Image();
-		image.setContent(file);
-		image.setName(name);
-		imageDao.insert(image);
+		imageService.addImage(name, file);
 	}
 
 	@RequestMapping(value = UPLOAD, method = POST)

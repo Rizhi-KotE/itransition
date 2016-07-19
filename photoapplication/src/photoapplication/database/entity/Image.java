@@ -1,4 +1,4 @@
-package photoapplication.dataexam.entity;
+package photoapplication.database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

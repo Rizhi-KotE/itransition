@@ -1,17 +1,16 @@
-package photoapplication.dataexam.service;
+package photoapplication.database.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import photoapplication.dataexam.entity.ImageUser;
-import photoapplication.dataexam.repository.ImageUserRepository;
+import photoapplication.database.entity.ImageUser;
+import photoapplication.database.repository.ImageUserRepository;
 
 @Service
 public class ImageUserServiceImpl implements ImageUserService {
-
-	@Autowired
+	
 	private ImageUserRepository imageUserRepository;
 
 	@Override
@@ -20,13 +19,13 @@ public class ImageUserServiceImpl implements ImageUserService {
 	}
 
 	@Override
-	public List<ImageUser> getAll() {
-		return imageUserRepository.findAll();
+	public void delete(long id) {
+		imageUserRepository.delete(id);
 	}
 
 	@Override
-	public ImageUser getByName(String name) {
-		return imageUserRepository.findByName(name);
+	public List<ImageUser> getAll() {
+		return imageUserRepository.findAll();
 	}
 
 	@Override
@@ -34,8 +33,8 @@ public class ImageUserServiceImpl implements ImageUserService {
 		return imageUserRepository.findOne(id);
 	}
 
-	@Override
-	public void delete(long id) {
-		imageUserRepository.delete(id);
+	@Autowired
+	public void setImageUserRepository(ImageUserRepository imageUserRepository) {
+		this.imageUserRepository = imageUserRepository;
 	}
 }
