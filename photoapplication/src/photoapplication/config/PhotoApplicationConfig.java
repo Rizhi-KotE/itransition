@@ -2,6 +2,8 @@ package photoapplication.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import photoapplication.dataexam.config.DataConfig;
+
 public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected String[] getServletMappings() {
@@ -10,7 +12,7 @@ public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootConfig.class };
+		return new Class<?>[] { DataConfig.class };
 	}
 
 	@Override

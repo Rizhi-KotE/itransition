@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import photoapplication.dao.interfaces.ImageDAO;
-import photoapplication.dao.objects.Image;
 import photoapplication.dao.objects.User;
+import photoapplication.dataexam.entity.Image;
 import utils.TestUtils;
 
 @Controller

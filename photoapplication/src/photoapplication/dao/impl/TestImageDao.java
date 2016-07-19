@@ -9,8 +9,8 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import photoapplication.dao.interfaces.ImageDAO;
-import photoapplication.dao.objects.Image;
 import photoapplication.dao.objects.User;
+import photoapplication.dataexam.entity.Image;
 
 @Component("testImageDAO")
 public class TestImageDao implements ImageDAO{
