@@ -17,6 +17,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import photoapplication.database.service.CloudinaryImageLoader;
+import photoapplication.database.service.ImageResource;
+
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("photoapplication.database")
@@ -66,6 +69,16 @@ public class DataConfig {
  
         return transactionManager;
     }
+    
+
+	@Bean
+	public ImageResource imageResource(){
+		CloudinaryImageLoader imageLoader = new CloudinaryImageLoader();
+		imageLoader.setCloudName("dso6nx90r");
+		imageLoader.setApiKey("dso6nx90r");
+		imageLoader.setApiSecret("hcLNKXaiJKwmkG1LG8Deh2admws");
+		return imageLoader;
+	}
  
     private Properties getHibernateProperties() {
         Properties properties = new Properties();

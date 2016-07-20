@@ -1,17 +1,21 @@
 package photoapplication.database.config;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
- 
-import javax.sql.DataSource;
-import java.util.Properties;
+
+import photoapplication.database.service.CloudinaryImageLoader;
+import photoapplication.database.service.ImageResource;
+import photoapplication.database.service.TestImageResource;
  
 @Configuration
 @EnableTransactionManagement
@@ -22,7 +26,7 @@ public class TestDataBaseConfig {
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "11111";
  
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
@@ -39,6 +43,11 @@ public class TestDataBaseConfig {
         entityManagerFactoryBean.setJpaProperties(hibernateProp());
  
         return entityManagerFactoryBean;
+    }
+    
+    @Bean
+    public ImageResource imageResource(){
+    	return new TestImageResource();
     }
  
     @Bean
@@ -61,6 +70,7 @@ public class TestDataBaseConfig {
         return dataSource;
     }
  
+    
     private Properties hibernateProp() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", PROPERTY_NAME_HIBERNATE_DIALECT);
@@ -69,4 +79,5 @@ public class TestDataBaseConfig {
         return properties;
     }
  
+    
 }

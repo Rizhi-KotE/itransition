@@ -2,7 +2,7 @@ package photoapplication.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import photoapplication.dataexam.config.DataConfig;
+import photoapplication.database.config.DataConfig;
 
 public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
