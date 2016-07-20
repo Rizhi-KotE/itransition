@@ -1,8 +1,8 @@
 package photoapplication.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import photoapplication.database.config.DataConfig;
 
 public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
@@ -20,4 +20,8 @@ public class PhotoApplicationConfig extends AbstractAnnotationConfigDispatcherSe
 		return new Class<?>[] { WebConfig.class };
 	}
 
+	@Bean(name = "springSecurityFilterChain")
+	DelegatingFilterProxy proxy(){
+		return new DelegatingFilterProxy();
+	}
 }

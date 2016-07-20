@@ -1,19 +1,17 @@
 package photoapplication.database.service;
 
- import java.io.IOException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Uploader;
 
 @Component
-public class CloudinaryImageLoader implements ImageResource{
+public class CloudinaryImageLoader implements ImageResource {
 
 	Cloudinary cloudinary = new Cloudinary();
 
@@ -23,43 +21,40 @@ public class CloudinaryImageLoader implements ImageResource{
 		return null;
 	}
 
-	public void setCloudName(String name){
+	public void setCloudName(String name) {
 		cloudinary.config.cloudName = name;
 	}
 
-	public void setApiKey(String key){
+	public void setApiKey(String key) {
 		cloudinary.config.apiKey = key;
 	}
 
-	public void setApiSecret(String secret){
+	public void setApiSecret(String secret) {
 		cloudinary.config.apiSecret = secret;
 	}
 
+	
 	@Override
-	public String save(InputStream stream) {
-		Map uploadResult = upload(stream);
+	public String save(Object stream) throws IOException {
+		Map<String, Object> uploadResult = upload(stream);
 		return getPublicKey(uploadResult);
 	}
 
-	private String getPublicKey(Map uploadResult) {
-		return (String)uploadResult.get("public_key");
+	private String getPublicKey(Map<String, Object> uploadResult) {
+		return (String) uploadResult.get("public_key");
 	}
 
-	private Map upload(InputStream stream) {
-		Map params = Collections.EMPTY_MAP;
+	@SuppressWarnings("unchecked")
+	private Map<String, Object> upload(Object file) throws IOException {
+		Map<String, Object> params = Collections.emptyMap();
 		Uploader uploader = cloudinary.uploader();
-		try {
-			return uploader.upload(stream, params);
-		} catch (IOException e) {
-			return Collections.EMPTY_MAP;
-		}
+		return (Map<String, Object>)uploader.upload(file, params);
+
 	}
 
-	
 	@Override
 	public String getUrl(String public_id) {
 		return cloudinary.url().generate("name");
 	}
-	
-	
+
 }

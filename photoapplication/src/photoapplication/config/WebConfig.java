@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,6 +19,7 @@ import photoapplication.database.service.ImageResource;
 
 @Configuration
 @EnableWebMvc
+@EnableWebMvcSecurity
 @ComponentScan("photoapplication")
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
@@ -28,17 +30,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setExposeContextBeansAsAttributes(true);
 		return resolver;
 	}
-	
-	@Bean
-	public DataSource dataSource(){
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(JDBC.class.getName());
-		dataSource.setUrl("photoapplication");
-		dataSource.setUsername("username");
-		dataSource.setPassword("password");
-		return dataSource;
-	}
-
 	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

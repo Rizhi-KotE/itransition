@@ -6,6 +6,7 @@ import static photoapplication.config.Constants.FILE;
 import static photoapplication.config.Constants.FILENAME;
 import static photoapplication.config.Constants.UPLOAD;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +40,11 @@ public class ImageCRUDController {
 	}
 	
 	@Autowired
-	@Qualifier("testImageDAO")
 	private ImageService imageService;
 
-	@ResponseBody
 	@RequestMapping(method = GET)
-	public  List<Image> getPhotos(){
-		List<Image> images = imageService.getByUser(new ImageUser());
-		return images;
+	public  List<Image> getImages(){
+		return imageService.getAll();
 	}
 	
 	@ResponseBody
@@ -60,17 +58,20 @@ public class ImageCRUDController {
 		fileName = makeUniqueName(fileName);
 		return fileName;
 	}
-	
-	private String base64URL(String base64){
-		return "data:image/jpg;base64,"+base64;
+
+	private void saveImage(String name, MultipartFile file) throws IOException {
+		Image image = createImage(name);
+		imageService.addImage(image, file.getBytes());
 	}
 
-	private void saveImage(String name, MultipartFile file) {
-		imageService.addImage(name, file);
+	private Image createImage(String name) {
+		Image image = new Image();
+		image.setName(name);
+		return image;
 	}
 
 	@RequestMapping(value = UPLOAD, method = POST)
-	public @ResponseBody String uploadFile(@RequestParam(FILENAME) String fileName, @RequestParam(FILE) MultipartFile file) {
+	public @ResponseBody String uploadFile(@RequestParam(FILENAME) String fileName, @RequestParam(FILE) MultipartFile file) throws IOException {
 		fileName = normalizeFileName(fileName);
 		saveImage(fileName, file);
 		return "";

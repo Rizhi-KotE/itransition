@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "images")
+@Table
 public class Image {
 	@Id
 	@GeneratedValue(generator = "increment")

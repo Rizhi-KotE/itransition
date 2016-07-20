@@ -1,6 +1,7 @@
 package photoapplication.database.service;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import photoapplication.database.entity.Image;
@@ -13,5 +14,9 @@ public interface ImageService {
 	
 	List<Image> getAll();
 
-	Image addImage(Image image, InputStream fileInputStream);
+	Image addImage(Image image, File file) throws IOException;
+	
+	Image addImage(Image image, byte[] file) throws IOException;
+	
+	Image addImage(Image image, String file) throws IOException;
 }

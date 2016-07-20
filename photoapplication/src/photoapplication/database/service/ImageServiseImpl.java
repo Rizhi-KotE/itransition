@@ -1,6 +1,7 @@
 package photoapplication.database.service;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,27 @@ public class ImageServiseImpl implements ImageService{
 	private ImageResource imageResource;
 	
 	@Override
-	public Image addImage(Image image, InputStream file) {
+	public Image addImage(Image image, File file) throws IOException {
+		return addImage(image, (Object)file);
+	}
+	
+	@Override
+	public Image addImage(Image image, String file) throws IOException {
+		return addImage(image, (Object)file);
+	}
+	
+	@Override
+	public Image addImage(Image image, byte[] file) throws IOException {
+		return addImage(image, (Object)file);
+	}
+	
+	private Image addImage(Image image, Object file) throws IOException{
 		String public_id = saveImageContent(file);
 		image.setPublic_Id(public_id);
 		return imageRepository.saveAndFlush(image);
 	}
 
-	private String saveImageContent(InputStream stream){
+	private String saveImageContent(Object stream) throws IOException{
 		return imageResource.save(stream);
 	}
 
