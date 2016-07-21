@@ -11,13 +11,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-import photoapplication.config.PhotoApplicationConfig;
+import photoapplication.config.DispatcherServletInitializer;
 import photoapplication.config.SecurityConfig;
+import photoapplication.config.WebConfig;
 import photoapplication.web.controller.UploadController;
 
 @DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = PhotoApplicationConfig.class)
+@ContextConfiguration(classes = WebConfig.class)
 public class UploadControllerTest {
 	private MockMvc initMockWithController() {
 		UploadController controller = new UploadController();

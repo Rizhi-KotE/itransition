@@ -69,10 +69,7 @@ public class DataConfig {
 		return dataSource;
 	}
 
-	@Bean(name = "springSecurityFilterChain")
-	DelegatingFilterProxy proxy() {
-		return new DelegatingFilterProxy();
-	}
+
 
 	private Properties hibernateProp() {
 		Properties properties = new Properties();

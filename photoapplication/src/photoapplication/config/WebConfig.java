@@ -19,7 +19,6 @@ import photoapplication.database.service.ImageResource;
 
 @Configuration
 @EnableWebMvc
-@EnableWebMvcSecurity
 @ComponentScan("photoapplication")
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean

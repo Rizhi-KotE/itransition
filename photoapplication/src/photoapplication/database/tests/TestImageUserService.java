@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,10 +15,15 @@ import javax.persistence.EntityManagerFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import io.codearte.jfairy.producer.person.Person;
+import photoapplication.config.DataConfig;
+import photoapplication.config.DispatcherServletInitializer;
 import photoapplication.database.entity.Image;
 import photoapplication.database.entity.ImageUser;
 import photoapplication.database.service.ImageService;
@@ -26,6 +32,7 @@ import utils.TestUtils;
 
 @DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = DataConfig.class)
 public class TestImageUserService {
 
 	protected EntityManager em;
@@ -36,8 +43,8 @@ public class TestImageUserService {
 	private ImageUserService imageUserService;
 
 	@Resource
-	private ImageService imageService;
-
+	private ImageService imageService;  
+	
 	private Image createImage() {
 		Image image = new Image();
 		image.setName(TestUtils.getRandomString(5));
@@ -77,7 +84,7 @@ public class TestImageUserService {
 
 	@Before
 	public void setUp() throws Exception {
-		em = emf.createEntityManager();
+
 	}
 
 	@Test
