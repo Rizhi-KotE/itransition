@@ -3,6 +3,7 @@ package photoapplication.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.WebMvcProperties.View;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -32,7 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.anyRequest().authenticated().and().formLogin().and().httpBasic();
+			.anyRequest().authenticated()
+				.and().formLogin().permitAll()
+				.and().httpBasic();
 	}
 
 }
