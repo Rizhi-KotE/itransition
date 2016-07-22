@@ -71,8 +71,6 @@ public class TestImageUserService {
 	private ImageUser setUsersDetails(ImageUser user) {
 		Person person = TestUtils.getRandomPerson();
 		user.setUsername(person.username());
-		user.setFirstName(person.firstName());
-		user.setLastName(person.lastName());
 		user.setPassword(TestUtils.getRandomString(10));
 		return user;
 	}
@@ -131,8 +129,6 @@ public class TestImageUserService {
 	private void extendsAssertEquals(ImageUser user, ImageUser gettedUser) throws Exception {
 		assertNotNullEquals(user, gettedUser);
 		assertNotNullEquals(user.getUsername(), gettedUser.getUsername());
-		assertNotNullEquals(user.getFirstName(), gettedUser.getFirstName());
-		assertNotNullEquals(user.getLastName(), gettedUser.getLastName());
 		assertNotNullEquals(user.getPassword(), gettedUser.getPassword());
 	}
 

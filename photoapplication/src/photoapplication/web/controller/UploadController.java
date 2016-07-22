@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Controller
+@RequestMapping("/")
 public class UploadController {
 
 
@@ -17,11 +18,5 @@ public class UploadController {
 		return "home";
 	}
 
-	@Bean(name = "multipartResolver")
-	public MultipartResolver multipartResolver(){
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setMaxInMemorySize(10000);
-		return resolver;
-	}
 
 }

@@ -21,47 +21,43 @@ import org.hibernate.annotations.GenericGenerator;
 public class ImageUser {
 
 	@NotNull
-	@Size(min = 5, max = 16)
 	@Column(name = "username")
 	private String username;
 	
 	@NotNull
-	@Size(min = 2, max = 30)
-	@Column(name = "firstName")
-	private String firstName;
-
-	@NotNull
-	@Size(min = 2, max = 30)
-	@Column(name = "lastName")
-	private String lastName;
-	
-	@NotNull
-	@Size(min = 5, max = 25)
 	@Column(name = "password")
 	private String password;
 	
+	@NotNull
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name="role")
+	private int role;
+	
+	
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getPassword() {

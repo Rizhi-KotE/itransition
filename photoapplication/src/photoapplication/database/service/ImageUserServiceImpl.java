@@ -3,6 +3,8 @@ package photoapplication.database.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,10 +12,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import photoapplication.database.entity.ImageUser;
 import photoapplication.database.repository.ImageUserRepository;
+import photoapplication.web.dto.UserDTO;
 
 @Service
 public class ImageUserServiceImpl implements ImageUserService, UserDetailsService {
@@ -55,10 +60,33 @@ public class ImageUserServiceImpl implements ImageUserService, UserDetailsServic
 		ImageUser user = imageUserRepository.findByUsername(username);
 		if (user != null) {
 			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority("ROLE_SPITTER"));
+			authorities.add(new SimpleGrantedAuthority("USER"));
 			return new User(user.getUsername(), user.getPassword(), authorities);
 		}
 		throw new UsernameNotFoundException("User '" + username + "' not found.");
 	}
 
+	@Transactional
+    @Override
+    public ImageUser registerNewUserAccount(UserDTO accountDto) throws EmailExistsException {
+        if (emailExist(accountDto.getEmail())) {  
+            throw new EmailExistsException("There is an account with that email adress: " + 
+              accountDto.getEmail());
+        }
+        ImageUser user = new ImageUser();    
+        user.setUsername(accountDto.getUsername());
+        user.setPassword(encodeUserPassword(accountDto));
+        user.setEmail(accountDto.getEmail());
+        return imageUserRepository.save(user);       
+    }
+
+	private String encodeUserPassword(UserDTO accountDto) {
+		PasswordEncoder encoder = new StandardPasswordEncoder();
+		return encoder.encode(accountDto.getPassword());
+	}
+
+	private boolean emailExist(String email) {
+		ImageUser user = imageUserRepository.findByEmail(email);
+		return user == null ? false : true;
+	}
 }
