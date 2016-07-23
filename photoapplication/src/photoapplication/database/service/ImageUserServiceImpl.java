@@ -77,6 +77,7 @@ public class ImageUserServiceImpl implements ImageUserService, UserDetailsServic
         user.setUsername(accountDto.getUsername());
         user.setPassword(encodeUserPassword(accountDto));
         user.setEmail(accountDto.getEmail());
+        user.setRole(1);
         return imageUserRepository.save(user);       
     }
 
@@ -88,5 +89,10 @@ public class ImageUserServiceImpl implements ImageUserService, UserDetailsServic
 	private boolean emailExist(String email) {
 		ImageUser user = imageUserRepository.findByEmail(email);
 		return user == null ? false : true;
+	}
+
+	@Override
+	public ImageUser findByEmail(String userName) {
+		return imageUserRepository.findByEmail(userName);
 	}
 }

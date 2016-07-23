@@ -6,4 +6,5 @@ public abstract class Constants {
 	public static final String UPLOAD = "upload";
 	public static final String FILENAME = "fileName";
 	public static final String FILE = "file";
+	public static final String USER_PAGE = "user/userPage";
 }

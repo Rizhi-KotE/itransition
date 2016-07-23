@@ -17,4 +17,6 @@ public interface ImageUserService {
 	ImageUser findByUserName(String username);
 
 	ImageUser registerNewUserAccount(UserDTO accountDto) throws EmailExistsException;
+
+	ImageUser findByEmail(String userName);
 }

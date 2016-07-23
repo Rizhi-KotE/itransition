@@ -13,7 +13,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.filter.DelegatingFilterProxy;
 
 import photoapplication.database.service.ImageResource;
 import photoapplication.database.service.TestImageResource;
@@ -22,10 +21,10 @@ import photoapplication.database.service.TestImageResource;
 @EnableTransactionManagement
 @ComponentScan("photoapplication.database")
 @EnableJpaRepositories("photoapplication.database.repository")
-public class DataConfig {
+public class TestDataConfig {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/photoapplicationdb";
+	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "11111";
 
