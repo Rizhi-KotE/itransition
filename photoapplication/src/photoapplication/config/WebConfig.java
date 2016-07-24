@@ -28,7 +28,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setPrefix("/resourses/views/");
 		resolver.setSuffix(".jsp");
 		resolver.setExposeContextBeansAsAttributes(true);
 		return resolver;
@@ -78,7 +78,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login/login");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

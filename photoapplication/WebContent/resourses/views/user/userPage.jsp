@@ -78,7 +78,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-				<a href="edit.html">Edit Profile</a> <a href="edit.html">Logout</a>
+				<a href="edit.html">Edit Profile</a> <a href="<c:url value="/logout" />">Logout</a>
 				<br>
 				<p class=" text-info">May 05,2014,03:00 pm</p>
 			</div>
