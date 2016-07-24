@@ -1,9 +1,12 @@
 package photoapplication.database.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -22,6 +25,19 @@ public class Image {
 
 	@Column(name = "public_id")
 	private String public_Id;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private ImageUser user;
+	
+
+	public ImageUser getUser() {
+		return user;
+	}
+
+	public void setUser(ImageUser user) {
+		this.user = user;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

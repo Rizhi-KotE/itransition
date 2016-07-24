@@ -24,7 +24,7 @@ import photoapplication.database.service.TestImageResource;
 public class TestDataConfig {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
+	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/photoapplicationdb";
 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "11111";
 

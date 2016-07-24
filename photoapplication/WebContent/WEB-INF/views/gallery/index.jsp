@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 /*
@@ -25,8 +26,9 @@
 	href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-<link rel="stylesheet" href="css/bootstrap-image-gallery.css">
-<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet"
+	href="<c:url value='/resourses/css/bootstrap-image-gallery.css'/>">
+<link href="<c:url value='/resourses/css/demo.css'/>" rel="stylesheet">
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
@@ -115,7 +117,7 @@
 		src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script
 		src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-	<script src="js/bootstrap-image-gallery.js"></script>
-	<script src="js/demo.js"></script>
+	<script src="<c:url value='/resourses/js/bootstrap-image-gallery.js'/>"></script>
+	<script src="<c:url value='/resourses/js/demo.js'/>"></script>
 </body>
 </html>

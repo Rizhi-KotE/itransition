@@ -2,6 +2,7 @@ package photoapplication.database.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,11 @@ public class ImageServiseImpl implements ImageService{
 	@Override
 	public List<Image> getAll() {
 		return imageRepository.findAll();
+	}
+
+	@Override
+	public String getImageUrl(Image image) {
+		return imageResource.getUrl(image.getPublic_Id());
 	}
 
 }

@@ -36,6 +36,10 @@ public class ImageUser {
 	private int role;
 	
 	
+	@OneToMany(mappedBy="id", cascade=CascadeType.ALL)
+	List<Image> images;
+	
+	
 	public int getRole() {
 		return role;
 	}
@@ -73,11 +77,6 @@ public class ImageUser {
 	@Column(name = "id")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private long id;
-
-	@JoinColumn(name = "image_id")
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Image> images;
-
 
 	@Override
 	public boolean equals(Object obj) {

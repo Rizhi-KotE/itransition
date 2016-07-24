@@ -11,35 +11,23 @@
 
 /*global blueimp, $ */
 
+var addImagesToGallery = function (result) {
+    var linksContainer = $('#links')
+    $.each(result.photos.photo, function (index, photo) {
+      $('<a/>')
+        .append($('<img>').prop('src', photo))
+        .attr('data-gallery', '')
+        .appendTo(linksContainer);
+    })
+  };
+  
 $(function () {
   'use strict'
 
-  // Load demo images from flickr:
   $.ajax({
-    // Flickr API is SSL only:
-    // https://code.flickr.net/2014/04/30/flickr-api-going-ssl-only-on-june-27th-2014/
-    url: 'user/gallery/images',
-    data: {
-      format: 'json',
-      method: 'flickr.interestingness.getList',
-      api_key: '7617adae70159d09ba78cfec73c13be3' // jshint ignore:line
-    },
-    dataType: 'jsonp',
-    jsonp: 'jsoncallback'
-  }).done(function (result) {
-    var linksContainer = $('#links')
-    var baseUrl
-    // Add the demo images as links with thumbnails to the page:
-    $.each(result.photos.photo, function (index, photo) {
-      baseUrl = 'https://farm' + photo.farm + '.static.flickr.com/' +
-      photo.server + '/' + photo.id + '_' + photo.secret
-      $('<a/>')
-        .append($('<img>').prop('src', baseUrl + '_s.jpg'))
-        .prop('href', baseUrl + '_b.jpg')
-        .prop('title', photo.title)
-        .attr('data-gallery', '')
-        .appendTo(linksContainer)
-    })
+    url: 'gallery/images',
+    method: "POST",
+    	success:addImagesToGallery()
   })
 
   $('#borderless-checkbox').on('change', function () {

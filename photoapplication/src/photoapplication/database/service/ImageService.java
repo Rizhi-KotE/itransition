@@ -2,6 +2,7 @@ package photoapplication.database.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import photoapplication.database.entity.Image;
@@ -19,4 +20,6 @@ public interface ImageService {
 	Image addImage(Image image, byte[] file) throws IOException;
 	
 	Image addImage(Image image, String file) throws IOException;
+	
+	String getImageUrl(Image image);
 }
