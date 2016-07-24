@@ -2,7 +2,6 @@ package photoapplication.web.controller;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,7 +34,7 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getHomePage() throws IllegalArgumentException, IllegalAccessException {
-		ModelAndView modelAndView = new ModelAndView(Constants.USER_PAGE);
+		ModelAndView modelAndView = new ModelAndView("gallery/index");
 		modelAndView.addObject("user", getCurrentUser());
 		return modelAndView;
 	}

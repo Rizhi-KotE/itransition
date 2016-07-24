@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jsee/web-jsptagLibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>2.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>constants</short-name>
+	<uri>constantTag</uri>
+	<description>
+		This tag library contains several tag extensions
+		useful
+		for formatting content for HTML.
+	</description>
+	<tag>
+		<name>const</name>
+		<tag-class>photoapplication.config.Constants</tag-class>
+		<body-content>tagdependent</body-content>
+		<attribute>
+			<name>name</name>
+		</attribute>
+	</tag>
+</taglib>

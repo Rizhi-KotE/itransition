@@ -1,7 +1,6 @@
 package photoapplication.config;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.test.context.BootstrapWith;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @SpringBootApplication

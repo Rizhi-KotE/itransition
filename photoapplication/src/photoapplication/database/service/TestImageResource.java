@@ -12,7 +12,7 @@ import utils.TestUtils;
 @Component
 public class TestImageResource implements ImageResource {
 
-	private Map<String, String> imageId = new HashMap();
+	private Map<String, String> imageId = new HashMap<String, String>();
 
 	@Override
 	public InputStream load(String name) {

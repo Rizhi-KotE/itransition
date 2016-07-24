@@ -12,9 +12,11 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -52,9 +54,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		cookieLocaleResolver.setDefaultLocale(Locale.ENGLISH);
 		return cookieLocaleResolver;
 	}
-	
+
 	@Bean
-	public MessageSource MessageSource(){
+	public MessageSource MessageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		return messageSource();
 	}
@@ -70,15 +72,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public MultipartResolver multipartResolver(){
+	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setMaxInMemorySize(10000);
 		return resolver;
 	}
-	
+
 	@Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login/login");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-    }
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/css/**").addResourceLocations("/resourses/css/**");
+		registry.addResourceHandler("/js/**").addResourceLocations("/resourses/js/**");
+		registry.addResourceHandler("/images/**").addResourceLocations("/resourses/images/**");
+		super.addResourceHandlers(registry);
+	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login/login");
+		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+	}
 }

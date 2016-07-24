@@ -4,7 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static photoapplication.config.Constants.FILE;
 import static photoapplication.config.Constants.FILENAME;
-import static photoapplication.config.Constants.UPLOAD;
+import static photoapplication.config.Constants.UPLOAD_URL;
 
 import java.io.IOException;
 import java.util.List;
@@ -70,7 +70,7 @@ public class ImageCRUDController {
 		return image;
 	}
 
-	@RequestMapping(value = UPLOAD, method = POST)
+	@RequestMapping(value = UPLOAD_URL, method = POST)
 	public @ResponseBody String uploadFile(@RequestParam(FILENAME) String fileName, @RequestParam(FILE) MultipartFile file) throws IOException {
 		fileName = normalizeFileName(fileName);
 		saveImage(fileName, file);

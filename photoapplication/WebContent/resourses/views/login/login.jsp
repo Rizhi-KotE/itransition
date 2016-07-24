@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="photoapplication.config.Constants"%>
 <fmt:setBundle basename="messages" />
 <fmt:message key="message.password" var="noPass" />
 <fmt:message key="message.username" var="noUser" />
@@ -16,11 +17,11 @@
 <title>Photoapplication signin</title>
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value='resourses/bootstrap/css/bootstrap.min.css' />"
+<link href="<c:url value='<%= Constants.BOOTSTRAP_MIN_CSS%>'/>"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value='resourses/views/login/signin.css' />"
+<link href="<c:url value='<%= Constants.VIEWS+"login/signin.css"%>' />"
 	rel="stylesheet" />
 
 </head>
@@ -29,7 +30,7 @@
 
 	<div class="container">
 
-		<form class="form-signin" action="login" method="POST">
+		<form class="form-signin" action='<%= Constants.LOGIN_URL %>' method="POST">
 			<c:if test="${param.error ne null }">
 				<div class="alert alert-danger">Incorrect login or password</div>
 			</c:if>
