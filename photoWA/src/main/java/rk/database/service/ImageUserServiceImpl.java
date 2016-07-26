@@ -1,17 +1,10 @@
 package rk.database.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,8 +13,9 @@ import rk.database.entity.ImageUser;
 import rk.database.repository.ImageUserRepository;
 import rk.web.dto.UserDTO;
 
+
 @Service
-public class ImageUserServiceImpl implements ImageUserService, UserDetailsService {
+public class ImageUserServiceImpl implements ImageUserService{
 
 	private ImageUserRepository imageUserRepository;
 
@@ -55,16 +49,7 @@ public class ImageUserServiceImpl implements ImageUserService, UserDetailsServic
 		return imageUserRepository.findByUsername(username);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ImageUser user = imageUserRepository.findByUsername(username);
-		if (user != null) {
-			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority("USER"));
-			return new User(user.getUsername(), user.getPassword(), authorities);
-		}
-		throw new UsernameNotFoundException("User '" + username + "' not found.");
-	}
+
 
 	@Transactional
     @Override

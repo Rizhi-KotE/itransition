@@ -23,13 +23,5 @@ public class Constants{
 	public static final String USER = "user";
 	public static final String USER_PAGE_URL = "userPage/userPage";
 	public static final String WORKING_AREA = "working_area";
-	
-	public static void main(String ...args){
-		System.out.println(RESOURCES);
-		System.out.println(BOOTSTRAP);
-		System.out.println(BOOTSTRAP_MIN_CSS);
-		System.out.println(VIEWS);
-		System.out.println(BOOTSTRAP_CSS);
-	}
-	
+
 }

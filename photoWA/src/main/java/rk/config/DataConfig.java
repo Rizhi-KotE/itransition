@@ -19,8 +19,8 @@ import rk.database.service.TestImageResource;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("photoapplication.database")
-@EnableJpaRepositories("photoapplication.database.repository")
+@ComponentScan("rk.database")
+@EnableJpaRepositories("rk.database.repository")
 public class DataConfig {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
@@ -30,7 +30,7 @@ public class DataConfig {
 
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
-	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "photoapplication.database.entity";
+	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "rk.database.entity";
 	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "update";
 
 	@Bean
