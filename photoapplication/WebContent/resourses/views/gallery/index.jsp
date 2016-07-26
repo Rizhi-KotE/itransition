@@ -3,31 +3,59 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <meta charset="UTF-8" />
-    <title>Albums</title>
-     <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/font-awesome.min.css' />" />
-    <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/jgallery.min.css?v=1.5.0' />" />
-    <script type="text/javascript" src="<c:url value='/js/jquery-2.0.3.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/js/jgallery.min.js?v=1.5.0' />"></script>
-    <script type="text/javascript" src="<c:url value='/js/touchswipe.min.js' />"></script>
-</head>
-<body style="width: 900px; margin: 100px auto; height: auto;">
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value="/css/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value="/css/jgallery.min.css?v=1.5.0" />" />
+<script type="text/javascript"
+	src="<c:url value="/js/jquery-2.0.3.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/jgallery.min.js?v=1.5.0" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/touchswipe.min.js" />"></script>
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
+
 <script type="text/javascript">
-$( function() {
-    $( '#gallery' ).jGallery();
-} );
+	$(function() {
+		$("#gallery").jGallery({
+			"transitionCols" : "1",
+			"transitionRows" : "1",
+			"thumbnailsPosition" : "left",
+			"thumbType" : "image",
+			"backgroundColor" : "FFFFFF",
+			"textColor" : "000000",
+			"mode" : "standard"
+		});
+	});
 </script>
-<div id="gallery">
-    <div class="album" data-jgallery-album-title="Album 1">
-        <a href="images/large/1.jpg"><img src="/images/thumbs/1.jpg" alt="Photo 1" /></a>
-        <a href="images/large/2.jpg"><img src="/images/thumbs/2.jpg" alt="Photo 2" /></a>
-        <a href="images/large/3.jpg"><img src="/images/thumbs/3.jpg" alt="Photo 3" /></a>
-    </div>
-    <div class="album" data-jgallery-album-title="Album 2">
-        <a href="images/large/4.jpg"><img src="/images/thumbs/4.jpg" alt="Photo 4" /></a>
-        <a href="images/large/5.jpg"><img src="/images/thumbs/5.jpg" alt="Photo 5" /></a>
-        <a href="images/large/6.jpg"><img src="/images/thumbs/6.jpg" alt="Photo 6" /></a>
-    </div>
-</div>
+</head>
+<body>
+	<div class="container">
+		<div class="container">
+			<nav role="navigation" class="navbar navbar-default">
+				<!-- Collection of nav links, forms, and other content for toggling -->
+				<div id="navbarCollapse" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Transform image</a></li>
+						<li><a href="#">Create slideshowm</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Sign in</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div id="gallery">
+			<ul>
+				<li><a href="<c:url value="/images/large/2.jpg" />"><img
+						src="<c:url value="/images/thumbs/2.jpg" />" alt="Photo 2" /></a></li>
+				<li><a href="<c:url value="/images/large/1.jpg" />"><img
+						src="<c:url value="/images/thumbs/1.jpg" />" alt="Photo 1" /></a></li>
+				<li><a href="<c:url value="/images/large/3.jpg" />"><img
+						src="<c:url value="/images/thumbs/3.jpg" />" alt="Photo 3" /></a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
